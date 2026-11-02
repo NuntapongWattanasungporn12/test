@@ -1,0 +1,64 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "^22.18.0 || ^24.11.0 || >=26.0.0"
+  },
+  "packageManager": "npm@11.20.0",
+  "type": "module",
+  "scripts": {
+    "prebuild": "node scripts/require-supported-node.mjs",
+    "build": "node --no-warnings node_modules/next/dist/bin/next build",
+    "precontract:emit": "node scripts/require-supported-node.mjs",
+    "contract:emit": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js contract emit",
+    "predb:init": "node scripts/require-supported-node.mjs",
+    "db:init": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js db init",
+    "predb:migrate": "node scripts/require-supported-node.mjs",
+    "db:migrate": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js db migrate",
+    "predb:update": "node scripts/require-supported-node.mjs",
+    "db:update": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js db update",
+    "predb:verify": "node scripts/require-supported-node.mjs",
+    "db:verify": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js db verify",
+    "predev": "node scripts/require-supported-node.mjs",
+    "dev": "node --no-warnings node_modules/next/dist/bin/next dev",
+    "lint": "eslint",
+    "premigration:plan": "node scripts/require-supported-node.mjs",
+    "migration:plan": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js migration plan",
+    "premigration:show": "node scripts/require-supported-node.mjs",
+    "migration:show": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js migration show",
+    "premigration:status": "node scripts/require-supported-node.mjs",
+    "migration:status": "node --env-file-if-exists=.env --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js migration status",
+    "skills:sync": "node --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js skills sync",
+    "prestart": "node scripts/require-supported-node.mjs",
+    "start": "node --no-warnings node_modules/next/dist/bin/next start",
+    "postinstall": "node scripts/require-supported-node.mjs && node --experimental-strip-types --no-warnings node_modules/prisma/dist/prisma.js skills sync"
+  },
+  "dependencies": {
+    "@prisma/orm-sqlite": "8.0.0-rc.20",
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "temporal-polyfill": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.13.0",
+    "eslint-config-next": "16.4.2",
+    "prisma": "8.0.0-rc.28",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
+  },
+  "overrides": {
+    "effect": "4.0.3",
+    "@effect/platform-bun": "4.0.3",
+    "@effect/platform-node": "4.0.3",
+    "@effect/platform-node-shared": "4.0.3",
+    "@effect/sql-d1": "4.0.3",
+    "@effect/sql-sqlite-do": "4.0.3",
+    "@effect/vitest": "4.0.3",
+    "@vitejs/devtools": "0.7.6"
+  }
+}
