@@ -1,0 +1,108 @@
+[
+  {
+    "id": "table.Book",
+    "label": "Create table Book",
+    "summary": "Creates table Book with required columns",
+    "operationClass": "additive",
+    "target": {
+      "id": "sqlite",
+      "details": {
+        "schema": "main",
+        "objectType": "table",
+        "name": "Book"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Book\" does not exist",
+        "sql": "SELECT COUNT(*) = 0 AS \"result\" FROM \"sqlite_master\" WHERE (\"type\" = ? AND \"name\" = ?)",
+        "params": [
+          "table",
+          "Book"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Book\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Book\"",
+        "sql": "CREATE TABLE \"Book\" (\n  \"author\" TEXT NOT NULL,\n  \"categoryId\" CHARACTER NOT NULL,\n  \"coverData\" BLOB,\n  \"coverType\" TEXT,\n  \"createdAt\" TEXT NOT NULL,\n  \"description\" TEXT,\n  \"id\" CHARACTER NOT NULL,\n  \"isbn\" TEXT,\n  \"price\" REAL NOT NULL,\n  \"publishedYear\" INTEGER,\n  \"title\" TEXT NOT NULL,\n  \"updatedAt\" TEXT NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Book\" exists",
+        "sql": "SELECT COUNT(*) > 0 AS \"result\" FROM \"sqlite_master\" WHERE (\"type\" = ? AND \"name\" = ?)",
+        "params": [
+          "table",
+          "Book"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Book\""
+        }
+      },
+      {
+        "description": "verify table \"Book\" has exactly its columns",
+        "sql": "SELECT (SELECT COUNT(*) FROM pragma_table_info('Book')) = 12 AND (SELECT COUNT(*) FROM pragma_table_info('Book') WHERE (name, LOWER(type), \"notnull\", pk) IN (VALUES ('author', 'text', 1, 0), ('categoryId', 'character', 1, 0), ('coverData', 'blob', 0, 0), ('coverType', 'text', 0, 0), ('createdAt', 'text', 1, 0), ('description', 'text', 0, 0), ('id', 'character', 1, 1), ('isbn', 'text', 0, 0), ('price', 'real', 1, 0), ('publishedYear', 'integer', 0, 0), ('title', 'text', 1, 0), ('updatedAt', 'text', 1, 0))) = 12"
+      }
+    ]
+  },
+  {
+    "id": "table.Category",
+    "label": "Create table Category",
+    "summary": "Creates table Category with required columns",
+    "operationClass": "additive",
+    "target": {
+      "id": "sqlite",
+      "details": {
+        "schema": "main",
+        "objectType": "table",
+        "name": "Category"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Category\" does not exist",
+        "sql": "SELECT COUNT(*) = 0 AS \"result\" FROM \"sqlite_master\" WHERE (\"type\" = ? AND \"name\" = ?)",
+        "params": [
+          "table",
+          "Category"
+        ],
+        "expectation": {
+          "expects": "absent",
+          "object": "table \"Category\""
+        }
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Category\"",
+        "sql": "CREATE TABLE \"Category\" (\n  \"createdAt\" TEXT NOT NULL,\n  \"description\" TEXT,\n  \"id\" CHARACTER NOT NULL,\n  \"name\" TEXT NOT NULL,\n  \"updatedAt\" TEXT NOT NULL,\n  PRIMARY KEY (\"id\"),\n  UNIQUE (\"name\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Category\" exists",
+        "sql": "SELECT COUNT(*) > 0 AS \"result\" FROM \"sqlite_master\" WHERE (\"type\" = ? AND \"name\" = ?)",
+        "params": [
+          "table",
+          "Category"
+        ],
+        "expectation": {
+          "expects": "present",
+          "object": "table \"Category\""
+        }
+      },
+      {
+        "description": "verify table \"Category\" has exactly its columns",
+        "sql": "SELECT (SELECT COUNT(*) FROM pragma_table_info('Category')) = 5 AND (SELECT COUNT(*) FROM pragma_table_info('Category') WHERE (name, LOWER(type), \"notnull\", pk) IN (VALUES ('createdAt', 'text', 1, 0), ('description', 'text', 0, 0), ('id', 'character', 1, 1), ('name', 'text', 1, 0), ('updatedAt', 'text', 1, 0))) = 5"
+      }
+    ]
+  }
+]

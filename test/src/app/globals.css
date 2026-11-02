@@ -1,0 +1,667 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f6f3;
+  --surface: #ffffff;
+  --text: #17171a;
+  --muted: #6b6b73;
+  --border: #e4e4df;
+  --accent: #3b5bdb;
+  --accent-soft: #edf1ff;
+  --danger: #c92a2a;
+  --danger-soft: #fff0f0;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Sans Thai", "Leelawadee UI", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2 {
+  margin: 0;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgb(255 255 255 / 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+.topbarInner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9px;
+  background: var(--text);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.nav a:not(.btn) {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.nav a:not(.btn):hover {
+  color: var(--text);
+}
+
+.shell {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: grid;
+  gap: 1.75rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.05s;
+}
+
+.btn:hover {
+  border-color: #c9c9c2;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #324fc4;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn.danger {
+  color: var(--danger);
+  border-color: #f2c4c4;
+  background: var(--surface);
+}
+
+.btn.danger:hover {
+  background: var(--danger-soft);
+}
+
+.btn.small {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+/* ---------- Page structure ---------- */
+
+.hero {
+  padding: 2.5rem 2rem;
+  border-radius: calc(var(--radius) + 6px);
+  background: linear-gradient(135deg, #1d2b64 0%, #3b5bdb 60%, #748ffc 100%);
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  max-width: 30ch;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.lede {
+  margin: 0.6rem 0 0;
+  opacity: 0.85;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+
+.stat {
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  display: grid;
+}
+
+.stat strong {
+  font-size: 2rem;
+}
+
+.stat span {
+  color: var(--muted);
+}
+
+.sectionHead,
+.pageHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sectionHead {
+  margin-bottom: 1rem;
+}
+
+.sectionHead a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.pageHead p {
+  margin: 0.2rem 0 0;
+}
+
+.crumbs {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.crumbs a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.empty {
+  padding: 2rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+.empty a {
+  color: var(--accent);
+}
+
+.panel {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.panel .empty {
+  border: none;
+}
+
+.panel.narrow {
+  max-width: 34rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(16rem, 22rem) 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ---------- Filters ---------- */
+
+.filters {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.filters input {
+  flex: 1 1 16rem;
+}
+
+.filters select {
+  flex: 0 1 14rem;
+}
+
+/* ---------- Forms ---------- */
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.alert {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.bookForm {
+  grid-template-columns: 15rem 1fr;
+  gap: 2rem;
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  align-items: start;
+}
+
+.fields {
+  display: grid;
+  gap: 1rem;
+}
+
+.coverPicker {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+}
+
+.coverPicker small {
+  color: var(--muted);
+}
+
+.coverFrame {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  background: #fafaf8;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--muted);
+}
+
+.coverFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fileBtn {
+  width: 100%;
+}
+
+.fileBtn input {
+  display: none;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.check input {
+  width: auto;
+}
+
+/* ---------- Book cards ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 1.25rem;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.08);
+}
+
+.cardCover,
+.detailCover {
+  aspect-ratio: 2 / 3;
+  background: linear-gradient(160deg, #e7ebff, #f6f6f3);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.cardCover img,
+.detailCover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.noCover {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #a5b4fc;
+}
+
+.cardBody {
+  padding: 0.85rem 1rem 1rem;
+  display: grid;
+  gap: 0.2rem;
+  align-content: start;
+}
+
+.cardTitle {
+  line-height: 1.35;
+}
+
+.cardBody .muted {
+  font-size: 0.88rem;
+}
+
+.tag {
+  justify-self: start;
+  padding: 0.12rem 0.55rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.price {
+  margin-top: 0.3rem;
+  font-weight: 700;
+}
+
+.price.big {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* ---------- Book detail ---------- */
+
+.detail {
+  display: grid;
+  grid-template-columns: minmax(12rem, 20rem) 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.detailCover {
+  border-radius: var(--radius);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.12);
+}
+
+.detailBody {
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+.detailBody p {
+  margin: 0;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1.5rem;
+  margin: 0.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.meta dt {
+  color: var(--muted);
+}
+
+.meta dd {
+  margin: 0;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+/* ---------- Table ---------- */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+
+.table th {
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 0.75rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+.table a {
+  text-decoration: none;
+}
+
+.table .num {
+  text-align: right;
+}
+
+.rowActions {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.deleteWrap {
+  display: inline-grid;
+  gap: 0.25rem;
+}
+
+.deleteWrap .btn {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.detailBody .deleteWrap .btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
+.inlineError {
+  color: var(--danger);
+  font-size: 0.8rem;
+  max-width: 16rem;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 760px) {
+  .split,
+  .detail,
+  .bookForm {
+    grid-template-columns: 1fr;
+  }
+
+  .detailCover,
+  .coverPicker {
+    max-width: 14rem;
+  }
+
+  .nav {
+    gap: 0.75rem;
+  }
+
+  .nav .btn {
+    display: none;
+  }
+
+  .hero {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .table {
+    display: block;
+    overflow-x: auto;
+  }
+}
